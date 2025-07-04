@@ -7,12 +7,13 @@ import {
   DeleteDateColumn,
   PrimaryGeneratedColumn,
   OneToMany,
+  OneToOne,
 } from 'typeorm';
+import { ImagemAutorEntity } from './imagem-autor.entity';
 
 @Entity({ name: 'autores' })
 export class AutorEntity {
 
-  //@PrimaryGeneratedColumn('uuid')
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -28,6 +29,13 @@ export class AutorEntity {
     onUpdate: 'CASCADE',
   })  
   livros: LivroEntity[]; 
+
+  @OneToOne(() => ImagemAutorEntity, (imagem) => imagem.autor, {
+    orphanedRowAction: 'delete',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })  
+  imagem: ImagemAutorEntity; 
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: string;

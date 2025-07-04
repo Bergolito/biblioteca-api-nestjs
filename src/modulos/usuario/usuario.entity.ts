@@ -11,7 +11,6 @@ import { Exclude } from 'class-transformer';
 @Entity({ name: 'usuarios' })
 export class UsuarioEntity {
 
-  //@PrimaryGeneratedColumn('uuid')
   @PrimaryGeneratedColumn('increment')
   id: number;
 
